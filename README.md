@@ -1,6 +1,6 @@
 # Ansible multipass
 
-And ansible role that Sets facts to support multi-platform roles.
+An ansible role that sets facts to support multi-platform roles.
 
 The following facts will be set when you include this role:
 
