@@ -1,0 +1,17 @@
+---
+
+# Generic defaults.
+multipass_root_user: root
+multipass_root_group: root
+multipass_root_home: /root
+multipass_user_homes: /home
+
+# Darwin defaults.
+multipass_darwin_root_user: root
+multipass_darwin_root_group: wheel
+multipass_darwin_root_home: /var/root
+multipass_darwin_user_homes: /Users
+
+# Homebrew defaults.
+multipass_homebrew_paths: "/usr/local/bin:"
+multipass_macports_paths: "/opt/local/bin:/opt/local/sbin:"
