@@ -1,13 +1,13 @@
-# Ansible multipass
+# Ansible Multipass
 
-An ansible role that sets facts to support multi-platform roles.
+[Ansible](https://www.ansible.com) role that sets facts to support multi-platform roles.
 
 The following facts will be set when you include this role:
 
 * `host_root_user` - The username of the root user (e.g. `root`).
 * `host_root_group` - The group of the root user (e.g. `root`).
 * `host_root_home` - The home directory of the root user (e.g. `/root`).
-* `host_user_homes` - The base directory where user home directories are located (e.g. `/home`).
+* `host_user_homes` - The base directory where user home directories are located (e.g. `/home` on Linux or `/Users` on OS X).
 * `host_package_manager_paths` - Additional directories to be added to the PATH for the host's package manager (e.g. `/usr/local/bin:` for Homebrew).
 
 
@@ -44,4 +44,4 @@ All the following variables have defaults and are optional.
 
     - hosts: servers
       roles:
-         - { role: AlphaHydrae.multipass }
+        - role: AlphaHydrae.multipass
