@@ -1,28 +1,31 @@
 ---
 
-# Set root user & group.
-- name: Set host_root_user & host_root_group (Linux)
-  set_fact: host_root_user={{ multipass_root_user }} host_root_group={{ multipass_root_group }}
+# Set user properties.
+- name: Set host facts for Linux
+  set_fact:
+    host_root_user: "{{ multipass_root_user }}"
+    host_root_group: "{{ multipass_root_group }}"
+    host_root_home: "{{ multipass_root_home }}"
+    host_user_homes: "{{ multipass_user_homes }}"
   when: ansible_os_family != 'Darwin'
-- name: Set host_root_user & host_root_group (Darwin)
-  set_fact: host_root_user={{ multipass_darwin_root_user }} host_root_group={{ multipass_darwin_root_group }}
-  when: ansible_os_family == 'Darwin'
-
-# Set home folders.
-- name: Set host_root_home & host_user_homes (Linux)
-  set_fact: host_root_home={{ multipass_root_home }} host_user_homes={{ multipass_user_homes }}
-  when: ansible_os_family != 'Darwin'
-- name: Set host_root_home & host_user_homes (Darwin)
-  set_fact: host_root_home={{ multipass_darwin_root_home }} host_user_homes={{ multipass_darwin_user_homes }}
+- name: Set host facts for Darwin
+  set_fact:
+    host_root_user: "{{ multipass_darwin_root_user }}"
+    host_root_group: "{{ multipass_darwin_root_group }}"
+    host_root_home: "{{ multipass_darwin_root_home }}"
+    host_user_homes: "{{ multipass_darwin_user_homes }}"
   when: ansible_os_family == 'Darwin'
 
 # Set additional package manager paths.
-- name: Set host_package_manager_paths (Homebrew)
-  set_fact: host_package_manager_paths={{ multipass_homebrew_paths }}
+- name: Set package manager facts for Homebrew
+  set_fact:
+    host_package_manager_paths: "{{ multipass_homebrew_paths }}"
   when: ansible_pkg_mgr == 'homebrew'
-- name: Set host_package_manager_paths (MacPorts)
-  set_fact: host_package_manager_paths={{ multipass_macports_paths }}
+- name: Set package manager facts for MacPorts
+  set_fact:
+    host_package_manager_paths: "{{ multipass_macports_paths }}"
   when: ansible_pkg_mgr == 'macports'
-- name: Set host_package_manager_paths (Other)
-  set_fact: host_package_manager_paths=""
+- name: Set generic package manager facts
+  set_fact:
+    host_package_manager_paths: ""
   when: ansible_pkg_mgr != 'homebrew' and ansible_pkg_mgr != 'macports'
