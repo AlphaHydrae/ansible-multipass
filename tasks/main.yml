@@ -8,6 +8,8 @@
     host_root_home: "{{ multipass_root_home }}"
     host_user_homes: "{{ multipass_user_homes }}"
   when: ansible_os_family != 'Darwin'
+  tags: [multipass]
+
 - name: Set host facts for Darwin
   set_fact:
     host_root_user: "{{ multipass_darwin_root_user }}"
@@ -15,17 +17,23 @@
     host_root_home: "{{ multipass_darwin_root_home }}"
     host_user_homes: "{{ multipass_darwin_user_homes }}"
   when: ansible_os_family == 'Darwin'
+  tags: [multipass]
 
 # Set additional package manager paths.
 - name: Set package manager facts for Homebrew
   set_fact:
     host_package_manager_paths: "{{ multipass_homebrew_paths }}"
   when: ansible_pkg_mgr == 'homebrew'
+  tags: [multipass]
+
 - name: Set package manager facts for MacPorts
   set_fact:
     host_package_manager_paths: "{{ multipass_macports_paths }}"
   when: ansible_pkg_mgr == 'macports'
+  tags: [multipass]
+
 - name: Set generic package manager facts
   set_fact:
     host_package_manager_paths: ""
   when: ansible_pkg_mgr != 'homebrew' and ansible_pkg_mgr != 'macports'
+  tags: [multipass]
